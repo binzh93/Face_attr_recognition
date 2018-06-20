@@ -162,7 +162,8 @@ class Data_Layer_train(caffe.Layer):
 				image = illumination(image)
 				image = mirror(image)
 			else:
-				return image
+				image = image
+            return image
 
 
 	def readSrcFile(self, src_file):
