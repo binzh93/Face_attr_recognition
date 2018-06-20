@@ -1,3 +1,4 @@
+name: "VGG"
 layer {
   name: "Data"
   type: "Python"
