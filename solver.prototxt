@@ -1,4 +1,4 @@
-net: "/workspace/mnt/group/face-det/zhubin# cd face_attr_recog/train_f/prototxt_file/face_attr.prototxt"
+net: "/workspace/mnt/group/face-det/zhubin/Face_attr_recognition/face_attr.prototxt"
 #iter_step: 2
 #test_iter: 840
 #test_interval: 4095
@@ -13,5 +13,5 @@ max_iter: 100000
 momentum: 0.9
 weight_decay: 0.0001 #0.0001
 snapshot: 1000000
-snapshot_prefix: "/workspace/mnt/group/face-det/zhubin# cd face_attr_recog/train_f/prototxt_file/face_attr"
+snapshot_prefix: "/workspace/mnt/group/face-det/zhubin/train_file/model/face_attr"
 solver_mode: GPU
