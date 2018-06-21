@@ -9,8 +9,7 @@ layer {
   python_param {
     module: "myDataLayer"
     layer: "Data_Layer_train"
-    param_str: '{
-               "mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 10, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/train.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
+    param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 10, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/train.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
   }
 }
 
@@ -665,60 +664,9 @@ layer {
   bottom: "cls_gender"
   bottom: "label"
   top: "loss_gender"
-  loss_weight: 1
-}
-
-# ========= age ============
-
-layer {
-  name: "cls_age"
-  type: "InnerProduct"
-  bottom: "drfc5"
-  top: "cls_age"
-  param {
-    name: "cls_age_w"
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    name: "cls_age_b"
-    lr_mult: 2
-    decay_mult: 0
-  }
-  inner_product_param {
-    num_output: 1
-    weight_filler {
-      type: "gaussian"
-      std: 0.01
-    }
-    bias_filler {
-      type: "constant"
-	  value: 0
-    }
-  }
-}
-
-layer {
-  name: "age_filter"
-  type: "Python"
-  bottom: "cls_age"
-  bottom: "pts"
-  top: "age_valid"
-  top: "pts_valid"
-  python_param {
-    module: "myDataLayer"
-    layer:  "filter_Layer"
-  }
+  
 }
 
 
 
-layer {
-  name: "loss_age"
-  type: "EuclideanLoss"
-  bottom: "age_valid"
-  bottom: "pts_valid"
-  top: "loss_age"
-  loss_weight: 1
-}
 
