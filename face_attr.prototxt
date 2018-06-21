@@ -30,7 +30,7 @@ layer
     python_param {
         module: "myDataLayer"
         layer: "Data_Layer_train"
-        param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 100, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/test.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
+        param_str: '{"mirror": False, "illumination": False, "im_size": 64, "crop_size": 56, "batch_size": 100, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/test.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
     }
 }
 
@@ -314,7 +314,7 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 256
+        num_output: 512
         kernel_size: 3
         stride: 1
         pad: 1
@@ -373,7 +373,7 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 512
+        num_output: 256
         kernel_size: 3
         stride: 1
         pad: 1
@@ -444,7 +444,7 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 256
+        num_output: 512
         kernel_size: 3
         stride: 1
         pad: 1
@@ -503,7 +503,7 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 512
+        num_output: 256
         kernel_size: 3
         stride: 1
         pad: 1
@@ -701,9 +701,38 @@ layer
 # ========= cls ============
 layer
 {
-    name: "cls_gender"
+    name: "fc_gender"
     type: "InnerProduct"
     bottom: "drfc5"
+    top: "fc_gender"
+    param {
+        name: "fc_gender_w"
+        lr_mult: 1
+        decay_mult: 1
+    }
+    param {
+        name: "fc_gender_b"
+        lr_mult: 2
+        decay_mult: 0
+    }
+    inner_product_param {
+        num_output: 100
+        weight_filler {
+            type: "gaussian"
+            std: 0.01
+        }
+        bias_filler {
+            type: "constant"
+            value: 0
+        }
+    }
+}
+
+layer
+{
+    name: "cls_gender"
+    type: "InnerProduct"
+    bottom: "fc_gender"
     top: "cls_gender"
     param {
         name: "cls_gender_w"
@@ -739,12 +768,41 @@ layer
 }
 
 # ========= age ============
+layer
+{
+    name: "fc_age"
+    type: "InnerProduct"
+    bottom: "drfc5"
+    top: "fc_age"
+    param {
+        name: "fc_age_w"
+        lr_mult: 1
+        decay_mult: 1
+    }
+    param {
+        name: "fc_age_b"
+        lr_mult: 2
+        decay_mult: 0
+    }
+    inner_product_param {
+        num_output: 100
+        weight_filler {
+            type: "gaussian"
+            std: 0.01
+        }
+        bias_filler {
+            type: "constant"
+            value: 0
+        }
+    }
+}
+
 
 layer
 {
     name: "reg_age"
     type: "InnerProduct"
-    bottom: "drfc5"
+    bottom: "fc_age"
     top: "reg_age"
     param {
         name: "reg_age_w"
