@@ -82,12 +82,7 @@ class Data_Layer_train(caffe.Layer):
 
 		self.batch_size = params["batch_size"]
 		self.src_file = params['src_file']
-
 		self.basepath = params['img_basepath']
-
-		top[0].reshape(self.batch_size, 3, self.im_size, self.im_size)
-        	top[1].reshape(self.batch_size, 1)
-		top[2].reshape(self.batch_size, 1)
 
         	self.imgTuples = self.readSrcFile()
         	self._cur = 0 # use this to check if we need to restart the list of images
@@ -99,6 +94,10 @@ class Data_Layer_train(caffe.Layer):
 			self.data_aug_type.append("illumination")
 		if ("mirror" in self.data_aug_type) and ("illumination" in self.data_aug_type):
 			self.data_aug_type.append("mirror_illumination")
+			
+		top[0].reshape(self.batch_size, 3, self.im_size, self.im_size)
+        	top[1].reshape(self.batch_size, 1)
+		top[2].reshape(self.batch_size, 1)
 
 
 	def reshape(self, bottom, top):
