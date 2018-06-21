@@ -868,7 +868,7 @@ layer{
     bottom: "reg_age"
     bottom: "pts"
     top: "test_age_loss"
-    name: "loss_age"
+    name: "age_EuclideanLoss"
     type: "EuclideanLoss"
     include {
         phase: TEST
