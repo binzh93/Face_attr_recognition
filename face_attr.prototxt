@@ -805,6 +805,7 @@ layer
         }
     }
 }
+layer
 {
     name: "relu_fc_age"
     type: "ReLU"
