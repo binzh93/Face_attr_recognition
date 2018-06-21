@@ -146,24 +146,22 @@ class Data_Layer_train(caffe.Layer):
 
 	# mirror, illumination, mirror+illumination
 	def data_augment(self, image):
+		# crop 
+		image = random_crop(image, self.im_size, self.crop_size, flag=1)
+		
 		# choose a type of data augment
-		if len(self.data_aug_type) == 1:
-			return  image
+		idx= random.randint(0,len(self.data_aug_type)) 
+		
+		if self.data_aug_type[idx] == 'mirror':
+			image = mirror(image)
+		elif self.data_aug_type[idx] == 'illumination':
+			image = illumination(image)
+		elif self.data_aug_type[idx] == 'mirror_illumination': 
+			image = illumination(image)
+			image = mirror(image)
 		else:
-			# crop 
-			image = random_crop(image, self.im_size, self.crop_size, flag=1)
-			# choose a type of data augment
-			idx= random.randint(0,len(self.data_aug_type))  
-			if self.data_aug_type[idx] == 'mirror':
-				image = mirror(image)
-			elif self.data_aug_type[idx] == 'illumination':
-				image = illumination(image)
-			elif self.data_aug_type[idx] == 'mirror_illumination': 
-				image = illumination(image)
-				image = mirror(image)
-			else:
-				image = image
-			return image
+			image = image
+		return image
 
 
 	def readSrcFile(self):
