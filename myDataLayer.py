@@ -171,7 +171,7 @@ class Data_Layer_train(caffe.Layer):
 		imgTuple = []
 		for line in f.readlines():
 			temp = line.split(" ")
-			imgTuple.append((temp[0], int(temp[1]), [int(temp[2])] ))
+			imgTuple.append((temp[0], int(temp[1]), int(temp[2]) ))
 		return imgTuple
 	
 ################################################################################
