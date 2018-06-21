@@ -4,7 +4,7 @@ net: "/workspace/mnt/group/face-det/zhubin/Face_attr_recognition/face_attr.proto
 #test_interval: 4095
 #test_initialization: false
 display: 100
-base_lr: 0.001
+base_lr: 0.00001
 lr_policy: "multistep"
 stepsize: 500000
 #stepvalue: 300000
