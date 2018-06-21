@@ -89,7 +89,7 @@ class Data_Layer_train(caffe.Layer):
         	top[1].reshape(self.batch_size, 1)
 		top[2].reshape(self.batch_size, 1)
 
-        	self.imgTuples = self.readSrcFile(self.src_file)
+        	self.imgTuples = self.readSrcFile()
         	self._cur = 0 # use this to check if we need to restart the list of images
 
 		self.data_aug_type = ["normal"]
@@ -166,8 +166,8 @@ class Data_Layer_train(caffe.Layer):
 			return image
 
 
-	def readSrcFile(self, src_file):
-		f = open(src_file, 'r')
+	def readSrcFile(self):
+		f = open(self.src_file, 'r')
 		imgTuple = []
 		for line in f.readlines():
 			temp = line.split(" ")
@@ -177,39 +177,4 @@ class Data_Layer_train(caffe.Layer):
 ################################################################################
 #############################Filter Layer By Python###########################
 ################################################################################
-class filter_Layer(caffe.Layer):
-	def setup(self,bottom,top):
-		if len(bottom) != 2:
-			raise Exception("Need 2 Inputs(bottom)")
-		if len(top) != 2:
-			raise Exception("Need 2 Outputs(top)")
 
-	def reshape(self,bottom,top):
-		pts = bottom[1].data[:,0]
-		self.valid_index = np.where(pts != -1)[0]
-		self.count = len(self.valid_index)
-		if(self.count>0):
-			top[0].reshape(self.count, 1)
-			top[1].reshape(self.count, 1)
-		else:
-			top[0].reshape(1, 1)
-                        top[1].reshape(1, 1)
-
-	def forward(self,bottom,top):
-		if(self.count>0):
-			top[0].data[0:self.count] = bottom[0].data[self.valid_index]
-			top[1].data[0:self.count] = bottom[1].data[self.valid_index]
-		else:
-			top[0].data[...][...]=0
-                        top[1].data[...][...]=0
-
-	def backward(self,top,propagate_down,bottom):
-		if propagate_down[0] and self.count!=0 :
-			bottom[0].diff[...]=0
-			bottom[0].diff[self.valid_index]=top[0].diff[...]
-		if propagate_down[1] and self.count!=0:
-			bottom[1].diff[...]=0
-			bottom[1].diff[self.valid_index]=top[1].diff[...]
-		if self.count==0:
-			bottom[0].diff[...]=0
-			bottom[1].diff[...]=0
