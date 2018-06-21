@@ -180,7 +180,7 @@ class Data_Layer_train(caffe.Layer):
 		image = random_crop(image, self.im_size, self.crop_size, flag=1)
 		
 		# choose a type of data augment
-		idx= random.randint(0,len(self.data_aug_type)) 
+		idx= random.randint(0,len(self.data_aug_type)-1) 
 		
 		if self.data_aug_type[idx] == 'mirror':
 			image = mirror(image)
