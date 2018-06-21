@@ -172,7 +172,7 @@ class Data_Layer_train(caffe.Layer):
                 image *= self.scale
 		print image, label, pts
 
-		return image, label, pts
+		return os.path.join(self.basepath, img_path), label, pts
 
 
 	# mirror, illumination, mirror+illumination
