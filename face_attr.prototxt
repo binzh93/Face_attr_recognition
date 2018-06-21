@@ -74,7 +74,7 @@ layer
     name: "bn_conv1"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -133,7 +133,7 @@ layer
     name: "bn_conv2"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -204,7 +204,7 @@ layer
     name: "bn_conv3"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -263,7 +263,7 @@ layer
     name: "bn_conv4"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -335,7 +335,7 @@ layer
     name: "bn_conv5"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -394,7 +394,7 @@ layer
     name: "bn_conv6"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -465,7 +465,7 @@ layer
     name: "bn_conv7"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -524,7 +524,7 @@ layer
     name: "bn_conv8"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -595,7 +595,7 @@ layer
     name: "bn_conv9"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
@@ -654,7 +654,7 @@ layer
     name: "bn_conv10"
     type: "BatchNorm"
     batch_norm_param {
-        #		use_global_stats: true
+        use_global_stats: true
     }
 }
 
