@@ -1,4 +1,5 @@
 name: "VGG"
+# =========train input=======
 layer
 {
     name: "Data"
@@ -15,6 +16,25 @@ layer
         param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 10, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/train.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
     }
 }
+# ==========test input =============
+layer
+{
+    name: "Data"
+    type: "Python"
+    top: "data"
+    top: "label"
+    top: "pts"
+    include {
+        phase: TEST
+    }
+    python_param {
+        module: "myDataLayer"
+        layer: "Data_Layer_train"
+        param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 10, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/test.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
+    }
+}
+
+# --------------------------
 
 layer
 {
@@ -722,17 +742,17 @@ layer
 
 layer
 {
-    name: "cls_age"
+    name: "reg_age"
     type: "InnerProduct"
     bottom: "drfc5"
-    top: "cls_age"
+    top: "reg_age"
     param {
-        name: "cls_age_w"
+        name: "reg_age_w"
         lr_mult: 1
         decay_mult: 1
     }
     param {
-        name: "cls_age_b"
+        name: "reg_age_b"
         lr_mult: 2
         decay_mult: 0
     }
@@ -753,7 +773,7 @@ layer
 {
     name: "age_filter"
     type: "Python"
-    bottom: "cls_age"
+    bottom: "reg_age"
     bottom: "pts"
     top: "age_valid"
     top: "pts_valid"
@@ -771,6 +791,30 @@ layer
     bottom: "pts_valid"
     top: "loss_age"
     loss_weight: 1
+}
+
+# ============test==============
+layer {
+    bottom: "cls_gender"
+    bottom: "label"
+    top: "acc/top-1"
+    name: "acc/top-1"
+    type: "Accuracy"
+    include {
+        phase: TEST
+    }
+}
+
+
+layer{   
+    bottom: "reg_age"
+    bottom: "pts"
+    top: "test_age_loss"
+    name: "loss_age"
+    type: "EuclideanLoss"
+    include {
+        phase: TEST
+    }
 }
 
 
