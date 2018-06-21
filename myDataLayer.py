@@ -116,7 +116,7 @@ class Data_Layer_train(caffe.Layer):
 			#im, label, pts= self.load_next_image()
 			print 'nnnnnnnnn111111'
 			print type(self.imgTuples)
-			print imgTuple[0:10]
+			print self.imgTuples[0:10]
 			img_path, label, pts = self.imgTuples[5]
 			print 'nnnnnnnnn22222222'
 			image = cv2.imread(os.path.join(self.basepath, img_path))
