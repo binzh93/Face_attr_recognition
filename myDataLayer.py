@@ -72,8 +72,10 @@ class Data_Layer_train(caffe.Layer):
 
 		self.mean = 127.5
 		self.scale = 1/128.0
+		print '11111111111111111111111111111'
 
 		params = eval(self.param_str)
+		print '2222222222222222222222222222222'
 		self.mirror = params["mirror"]
 		self.illumination = params["illumination"]
 
@@ -83,9 +85,12 @@ class Data_Layer_train(caffe.Layer):
 		self.batch_size = params["batch_size"]
 		self.src_file = params['src_file']
 		self.basepath = params['img_basepath']
+		
+		print '3333333333333333333333333333333'
 
         	self.imgTuples = self.readSrcFile()
         	self._cur = 0 # use this to check if we need to restart the list of images
+		print '44444444444444444444444444444444'
 
 		self.data_aug_type = ["normal"]
 		if self.mirror == True:
@@ -94,10 +99,11 @@ class Data_Layer_train(caffe.Layer):
 			self.data_aug_type.append("illumination")
 		if ("mirror" in self.data_aug_type) and ("illumination" in self.data_aug_type):
 			self.data_aug_type.append("mirror_illumination")
-			
+		print '5555555555555555555555555555555555'
 		top[0].reshape(self.batch_size, 3, self.im_size, self.im_size)
         	top[1].reshape(self.batch_size, 1)
 		top[2].reshape(self.batch_size, 1)
+		print '66666666666666666666666666666666'
 
 
 	def reshape(self, bottom, top):
