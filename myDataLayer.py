@@ -114,20 +114,27 @@ class Data_Layer_train(caffe.Layer):
 		for itt in range(self.batch_size):
 			#oss_task = random.randint(0,4)
 			#im, label, pts= self.load_next_image()
-			
+			print 'nnnnnnnnn111111'
 			img_path, label, pts = self.imgTuple[5]
+			print 'nnnnnnnnn22222222'
 			image = cv2.imread(os.path.join(self.basepath, img_path))
+			print 'nnnnnnnnn333333333'
 			image = random_crop(image, self.im_size, self.crop_size, flag=1)
+			print 'nnnnnnnnn44444444'
 			image = image.astype(np.float32)
+			print 'nnnnnnnnn5555555'
 			image = image.transpose((2, 0, 1))
+			print 'nnnnnnnnn666666666'
 			image -= self.mean
                 	image *= self.scale
+			print 'nnnnnnnnn77777777'
 			im = image
 			
 			
 			top[0].data[itt, ...] = im
 			top[1].data[itt, ...] = label
 			top[2].data[itt, ...] = pts
+			print 'nnnnnnnnn88888888'
 
 	def backward(self, top, propagate_down, bottom):
 		pass
