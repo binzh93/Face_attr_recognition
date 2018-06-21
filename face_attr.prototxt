@@ -6,7 +6,9 @@ layer
     top: "data"
     top: "label"
     top: "pts"
-
+    include {
+        phase: TRAIN
+    }
     python_param {
         module: "myDataLayer"
         layer: "Data_Layer_train"
