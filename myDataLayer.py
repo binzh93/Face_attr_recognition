@@ -100,7 +100,7 @@ class Data_Layer_train(caffe.Layer):
 		if ("mirror" in self.data_aug_type) and ("illumination" in self.data_aug_type):
 			self.data_aug_type.append("mirror_illumination")
 		print '5555555555555555555555555555555555'
-		top[0].reshape(self.batch_size, 3, self.im_size, self.im_size)
+		top[0].reshape(self.batch_size, 3, self.crop_size, self.crop_size)
         	top[1].reshape(self.batch_size, 1)
 		top[2].reshape(self.batch_size, 1)
 		print '66666666666666666666666666666666'
