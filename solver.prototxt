@@ -1,7 +1,7 @@
 net: "/workspace/mnt/group/face-det/zhubin/Face_attr_recognition/face_attr.prototxt"
 #iter_step: 2
 test_iter: 28        # 8188/300=27.2
-test_interval: 100    # 409479/512=799.
+test_interval: 400    # 409479/512=799.
 test_initialization: false
 display: 30
 base_lr: 0.01
