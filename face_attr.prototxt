@@ -759,7 +759,7 @@ layer
 
 layer
 {
-    name: "loss_gender"
+    name: "loss_cls_gender"
     type: "SoftmaxWithLoss"
     bottom: "cls_gender"
     bottom: "label"
@@ -843,7 +843,7 @@ layer
 
 layer
 {
-    name: "loss_age"
+    name: "loss_reg_age"
     type: "EuclideanLoss"
     bottom: "age_valid"
     bottom: "pts_valid"
@@ -867,8 +867,8 @@ layer {
 layer{   
     bottom: "reg_age"
     bottom: "pts"
-    top: "test_age_loss"
-    name: "age_EuclideanLoss"
+    top: "loss_reg_age"
+    name: "age_reg_loss"
     type: "EuclideanLoss"
     include {
         phase: TEST
