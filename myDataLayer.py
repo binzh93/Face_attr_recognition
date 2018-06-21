@@ -107,7 +107,18 @@ class Data_Layer_train(caffe.Layer):
 	def forward(self, bottom, top):
 		for itt in range(self.batch_size):
 			#oss_task = random.randint(0,4)
-			im, label, pts= self.load_next_image()
+			#im, label, pts= self.load_next_image()
+			
+			img_path, label, pts = self.imgTuple[5]
+			image = cv2.imread(os.path.join(self.basepath, img_path))
+			image = random_crop(image, self.im_size, self.crop_size, flag=1)
+			image = image.astype(np.float32)
+			image = image.transpose((2, 0, 1))
+			image -= self.mean
+                	image *= self.scale
+			im = image
+			
+			
 			top[0].data[itt, ...] = im
 			top[1].data[itt, ...] = label
 			top[2].data[itt, ...] = pts
