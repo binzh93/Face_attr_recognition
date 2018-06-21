@@ -115,6 +115,8 @@ class Data_Layer_train(caffe.Layer):
 			#oss_task = random.randint(0,4)
 			#im, label, pts= self.load_next_image()
 			print 'nnnnnnnnn111111'
+			print type(self.imgTuple)
+			print imgTuple[0:10]
 			img_path, label, pts = self.imgTuple[5]
 			print 'nnnnnnnnn22222222'
 			image = cv2.imread(os.path.join(self.basepath, img_path))
