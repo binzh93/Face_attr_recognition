@@ -170,9 +170,9 @@ class Data_Layer_train(caffe.Layer):
 		image = image.transpose((2, 0, 1))
 		image -= self.mean
                 image *= self.scale
-		print image, label, pts
+		print os.path.join(self.basepath, img_path), label, pts
 
-		return os.path.join(self.basepath, img_path), label, pts
+		return image, label, pts
 
 
 	# mirror, illumination, mirror+illumination
