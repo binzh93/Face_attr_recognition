@@ -848,7 +848,7 @@ layer
     bottom: "age_valid"
     bottom: "pts_valid"
     top: "loss_age"
-    loss_weight: 1
+    loss_weight: 0
 }
 
 # ============test==============
