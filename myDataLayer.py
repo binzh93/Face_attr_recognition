@@ -141,7 +141,7 @@ class Data_Layer_train(caffe.Layer):
 			top[0].data[itt, ...] = im
 			top[1].data[itt, ...] = label
 			top[2].data[itt, ...] = pts
-			print 'nnnnnnnnn99999999999'
+			#print 'nnnnnnnnn99999999999'
 
 	def backward(self, top, propagate_down, bottom):
 		pass
