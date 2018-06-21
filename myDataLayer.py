@@ -113,29 +113,29 @@ class Data_Layer_train(caffe.Layer):
 	def forward(self, bottom, top):
 		for itt in range(self.batch_size):
 			#oss_task = random.randint(0,4)
-			#im, label, pts= self.load_next_image()
-			print 'nnnnnnnnn111111'
-			print type(self.imgTuples)
-			print self.imgTuples[0:10]
-			img_path, label, pts = self.imgTuples[5]
-			print 'nnnnnnnnn22222222'
-			image = cv2.imread(os.path.join(self.basepath, img_path))
-			print 'nnnnnnnnn333333333'
-			image = random_crop(image, self.im_size, self.crop_size, flag=1)
-			print 'nnnnnnnnn44444444'
-			image = image.astype(np.float32)
-			print 'nnnnnnnnn5555555'
-			image = image.transpose((2, 0, 1))
-			print 'nnnnnnnnn666666666'
-			image -= self.mean
-                	image *= self.scale
-			print 'nnnnnnnnn77777777'
-			im = image
-			print 'nnnnnnnnnnn888888'
-			print im.shape
-			print im
-			print 'label: ', label
-			print 'age: ', pts
+			im, label, pts= self.load_next_image()
+			#print 'nnnnnnnnn111111'
+			#print type(self.imgTuples)
+			#print self.imgTuples[0:10]
+			#img_path, label, pts = self.imgTuples[5]
+			#print 'nnnnnnnnn22222222'
+			#image = cv2.imread(os.path.join(self.basepath, img_path))
+			#print 'nnnnnnnnn333333333'
+			#image = random_crop(image, self.im_size, self.crop_size, flag=1)
+			#print 'nnnnnnnnn44444444'
+			#image = image.astype(np.float32)
+			#print 'nnnnnnnnn5555555'
+			#image = image.transpose((2, 0, 1))
+			#print 'nnnnnnnnn666666666'
+			#image -= self.mean
+                	#image *= self.scale
+			#print 'nnnnnnnnn77777777'
+			#im = image
+			#print 'nnnnnnnnnnn888888'
+			#print im.shape
+			#print im
+			#print 'label: ', label
+			#print 'age: ', pts
 			
 			
 			top[0].data[itt, ...] = im
