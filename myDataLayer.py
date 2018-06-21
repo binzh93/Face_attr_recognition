@@ -131,12 +131,17 @@ class Data_Layer_train(caffe.Layer):
                 	image *= self.scale
 			print 'nnnnnnnnn77777777'
 			im = image
+			print 'nnnnnnnnnnn888888'
+			print im.shape
+			print im
+			print 'label: ', label
+			print 'age: ', pts
 			
 			
 			top[0].data[itt, ...] = im
 			top[1].data[itt, ...] = label
 			top[2].data[itt, ...] = pts
-			print 'nnnnnnnnn88888888'
+			print 'nnnnnnnnn99999999999'
 
 	def backward(self, top, propagate_down, bottom):
 		pass
