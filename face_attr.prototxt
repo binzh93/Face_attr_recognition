@@ -773,7 +773,7 @@ layer
     bottom: "cls_gender"
     bottom: "label"
     top: "loss_gender"
-    loss_weight: 1
+    loss_weight: 10
 }
 
 # ========= age ============
