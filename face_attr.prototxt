@@ -58,7 +58,7 @@ layer
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -112,12 +112,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 64
+        num_output: 32
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -183,12 +183,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 128
+        num_output: 64
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -242,12 +242,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 256
+        num_output: 64
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -314,12 +314,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 512
+        num_output: 128
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -373,12 +373,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 256
+        num_output: 128
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -444,12 +444,12 @@ layer
         decay_mult: 0
     }
     convolution_param {
-        num_output: 512
+        num_output: 256
         kernel_size: 3
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -508,7 +508,7 @@ layer
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -579,7 +579,7 @@ layer
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -638,7 +638,7 @@ layer
         stride: 1
         pad: 1
         weight_filler {
-            type: "gaussian"
+            type: "xavier"
             std: 0.01
         }
         bias_filler {
@@ -687,6 +687,7 @@ layer
         stride: 1
     }
 }
+
 layer
 {
     name: "dropout"
@@ -726,6 +727,14 @@ layer
             value: 0
         }
     }
+}
+
+layer
+{
+    name: "relu_fc_gender"
+    type: "ReLU"
+    bottom: "fc_gender"
+    top: "fc_gender"
 }
 
 layer
@@ -796,7 +805,12 @@ layer
         }
     }
 }
-
+{
+    name: "relu_fc_age"
+    type: "ReLU"
+    bottom: "fc_age"
+    top: "fc_age"
+}
 
 layer
 {
