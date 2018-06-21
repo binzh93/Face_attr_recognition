@@ -67,8 +67,8 @@ class Data_Layer_train(caffe.Layer):
 	def setup(self, bottom, top):
 		if len(top) != 3:
             		raise Exception("Need to define tops (data, label, pts)")
-		if len(bottom) != 0:
-            		raise Exception("Do not define a bottom")
+		#if len(bottom) != 0:
+            		#raise Exception("Do not define a bottom")
 
 		self.mean = 127.5
 		self.scale = 1/128.0
