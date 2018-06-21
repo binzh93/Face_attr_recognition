@@ -13,7 +13,7 @@ layer
     python_param {
         module: "myDataLayer"
         layer: "Data_Layer_train"
-        param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 800, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/train.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
+        param_str: '{"mirror": True, "illumination": True, "im_size": 64, "crop_size": 56, "batch_size": 700, "src_file": "/workspace/mnt/group/face-det/zhubin/train_file/train.txt", "img_basepath": "/workspace/mnt/group/face-det/zhubin/"}'
     }
 }
 # ==========test input =============
