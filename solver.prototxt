@@ -4,7 +4,7 @@ test_iter: 82
 test_interval: 30
 test_initialization: false
 display: 10
-base_lr: 0.001
+base_lr: 0.00001
 lr_policy: "multistep"
 stepsize: 500000
 #stepvalue: 300000
