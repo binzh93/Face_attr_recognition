@@ -688,23 +688,23 @@ layer
     }
 }
 
-layer
-{
-    name: "dropout"
-    type: "Dropout"
-    bottom: "pool5"
-    top: "drfc5"
-    dropout_param {
-        dropout_ratio: 0.5
-    }
-}
+#layer
+#{
+#    name: "dropout"
+#    type: "Dropout"
+#    bottom: "pool5"
+#    top: "drfc5"
+#    dropout_param {
+#        dropout_ratio: 0.5
+#    }
+#}
 
 # ========= cls ============
 layer
 {
     name: "fc_gender"
     type: "InnerProduct"
-    bottom: "drfc5"
+    bottom: "pool5"    # drfc5
     top: "fc_gender"
     param {
         name: "fc_gender_w"
@@ -773,7 +773,7 @@ layer
     bottom: "cls_gender"
     bottom: "label"
     top: "loss_gender"
-    loss_weight: 0.1
+    loss_weight: 1
 }
 
 # ========= age ============
@@ -781,7 +781,7 @@ layer
 {
     name: "fc_age"
     type: "InnerProduct"
-    bottom: "drfc5"
+    bottom: "pool5"     #drfc5
     top: "fc_age"
     param {
         name: "fc_age_w"
@@ -863,7 +863,7 @@ layer
     bottom: "age_valid"
     bottom: "pts_valid"
     top: "loss_age"
-    loss_weight: 1
+    loss_weight: 0.001
 }
 
 # ============test==============
